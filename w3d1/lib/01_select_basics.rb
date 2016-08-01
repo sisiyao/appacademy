@@ -36,12 +36,9 @@ def per_capita_gdp
   # Show the name and per capita gdp (gdp/population) for each country where
   # the area is over 5,000,000 km^2
   execute(<<-SQL)
-    SELECT
-      name, gdp/population as gdp_per_capita
-    FROM
-      countries
-    WHERE
-      area > 5000000
+    select name, gdp / population
+    from countries
+    where area > 5000000
   SQL
 end
 
@@ -49,12 +46,9 @@ def small_and_wealthy
   # Show the name and continent of countries where the area is less than 2,000
   # and the gdp is more than 5,000,000,000.
   execute(<<-SQL)
-    SELECT
-      name, continent
-    FROM
-      countries
-    WHERE
-      area < 2000 AND gdp > 5000000000
+    select name, continent
+    from countries
+    where area < 2000 and gdp > 5000000000
   SQL
 end
 
@@ -62,24 +56,18 @@ def scandinavia
   # Show the name and the population for 'Denmark', 'Finland', 'Norway', and
   # 'Sweden'
   execute(<<-SQL)
-    SELECT
-      name, population
-    FROM
-      countries
-    WHERE
-      countries.name IN ('Denmark', 'Finland', 'Norway', 'Sweden')
+    select name, population
+    from countries
+    where name in ('Denmark', 'Finland', 'Norway', 'Sweden')
   SQL
 end
 
 def starts_with_g
   # Show each country that begins with the letter G
   execute(<<-SQL)
-    SELECT
-      name
-    FROM
-      countries
-    WHERE
-      countries.name LIKE 'G%'
+    select name
+    from countries
+    where name like 'G%'
   SQL
 end
 
@@ -88,11 +76,8 @@ def just_the_right_size
   # with an area between 200,000 and 250,000.
   # BETWEEN allows range checking - note that it is inclusive.
   execute(<<-SQL)
-    SELECT
-      name, area / 1000 as area_in_thous
-    FROM
-      countries
-    WHERE
-      area BETWEEN 200000 AND 250000
+    select name, area / 1000
+    from countries
+    where area between 200000 and 250000
   SQL
 end

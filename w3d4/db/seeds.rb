@@ -50,4 +50,4 @@ Response.create!(user_id: 2, answer_choice_id: 8)
 
 # Question 3 Sisi
 Response.create!(user_id: 3, answer_choice_id: 7)
-# Response.create!(user_id: 4, answer_choice_id: 8)
+Response.create!(user_id: 4, answer_choice_id: 8)

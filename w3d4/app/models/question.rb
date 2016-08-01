@@ -59,11 +59,35 @@ class Question < ActiveRecord::Base
     answer
   end
 
-  def active_record_results
-    self.answer_choices
+  def active_record_results_1
+    results = AnswerChoice
+      .select("answer_choices.*, COUNT(responses.id) as results_count")
+      .joins("LEFT OUTER JOIN responses on answer_choices.id = responses.answer_choice_id")
+      .where("answer_choices.question_id = ?", self.id)
+      .group("answer_choices.id")
+      .order("answer_choices.id")
+
+    answer = {}
+    results.each do |result|
+      answer[result.text] = result.results_count
+    end
+
+    answer
+  end
+
+  def active_record_results_2
+    results = self.answer_choices
       .select("answer_choices.*, COUNT(responses.id) as results_count")
       .joins("LEFT OUTER JOIN responses on answer_choices.id = responses.answer_choice_id")
       .group("answer_choices.id")
+      .order("answer_choices.id")
+
+    answer = {}
+    results.each do |result|
+      answer[result.text] = result.results_count
+    end
+
+    answer
   end
 
 end
