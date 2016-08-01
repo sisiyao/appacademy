@@ -60,8 +60,8 @@ module Associatable
   end
 
   def has_many(name, options = {})
-    p "hello"
     options = HasManyOptions.new(name, self.name, options)
+    p self, self.name
 
     define_method(name) do
       options.model_class
@@ -71,6 +71,8 @@ module Associatable
 
   def assoc_options
     # Wait to implement this in Phase IVa. Modify `belongs_to`, too.
+    @assoc_options ||= {}
+    @assoc_options
   end
 end
 
