@@ -1,0 +1,56 @@
+<% if cat.persisted? %>
+  <% action = cat_url(cat) %>
+  <% hidden = true %>
+<% else %>
+  <% action = cats_url %>
+  <% hidden = false %>
+<% end %>
+
+
+<form action="<%= action %>" method="post">
+  <% if hidden %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+  <ul>
+    <li>
+      <label>Name:
+        <input type="text" name="cat[name]" value= "<%= cat.name %>">
+      </label>
+    </li>
+
+    <li>
+      <label>Birth Date:
+        <input type="date" name="cat[birth_date]" value= "<%= cat.birth_date %>">
+      </label>
+    </li>
+
+    <li>
+      <label>Color:
+        <select name="cat[color]">
+          <option value="default" disabled="true" selected>--choose one--</option>
+          <% Cat::COLORS.each do |color| %>
+            <option value="<%= color %>" <%= cat.color == color ? "selected" : "" %>>
+              <%= color %></option>
+          <% end %>
+        </select>
+      </label>
+    </li>
+
+    <li>
+      <label>Sex:
+        <input type="radio" name="cat[sex]" value="m" <%= cat.sex == "m" ? "checked" : "" %>>M
+        <input type="radio" name="cat[sex]" value="f" <%= cat.sex == "f" ? "checked" : "" %>>F
+      </label>
+    </li>
+
+    <li>
+      <label>Description:
+        <textarea name="cat[description]" rows="10" cols="40"><%= cat.description %></textarea>
+      </label>
+    </li>
+
+    <li>
+      <input type="submit" value="Submit">
+    </li>
+  </ul>
+</form>
