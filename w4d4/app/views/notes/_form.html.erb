@@ -1,0 +1,12 @@
+<form action="<%= track_notes_url(params[:id]) %>" method="post">
+  <%= auth_token %>
+
+  <label>Contents:
+    <br/>
+    <textarea name="note[content]" rows="10" cols="40"></textarea>
+  </label>
+
+  <br/><br/>
+
+  <input type="submit" value="Submit">
+</form>

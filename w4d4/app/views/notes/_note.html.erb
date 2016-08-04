@@ -1,0 +1,19 @@
+<p>
+  <p>
+    <%= note.content %>
+  </p>
+
+  <p>
+    Authored by: <%= note.user.email %>
+  </p>
+
+  <% if current_user.id == note.user_id %>
+    <form action=<%= note_url(note) %> method="post">
+      <%= auth_token %>
+
+      <input type="hidden" name="_method" value="delete">
+
+      <input type="submit" value="Destroy note!">
+    </form>
+  <% end %>
+</p>

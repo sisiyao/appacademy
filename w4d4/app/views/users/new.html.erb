@@ -1,0 +1,18 @@
+<h2>Sign up for MusicApp</h2>
+
+<p>
+  Already have an account? <%= link_to "Login>>", new_session_url %>
+</p>
+
+<form action="/users" method="post">
+  <%= auth_token %>
+  <label>Your email:
+    <input type="email" name="user[email]">
+  </label>
+
+  <label>Create a password:
+    <input type="password" name="user[password]">
+  </label>
+
+  <input type="submit" value="Create an account">
+</form>
