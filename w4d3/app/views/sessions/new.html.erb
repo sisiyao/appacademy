@@ -1,5 +1,5 @@
 <form class="" action="<%= session_url %>" method="post">
-  <input type="hidden" name="authenticity_token" value='<%= form_authenticity_token %>'>
+  <%= auth_token %>
   <label for="user_name">Username</label>
   <input id="user_name" type="text" name="user[user_name]">
 
@@ -8,3 +8,7 @@
 
   <input type="submit" value="Login">
 </form>
+
+<% content_for :footer do %>
+  <p>This is the sign in page.</p>
+<% end %>

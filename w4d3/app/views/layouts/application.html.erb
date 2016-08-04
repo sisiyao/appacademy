@@ -8,13 +8,19 @@
 </head>
 <body>
 
-<% if current_user %>
-  <h1>Hey <%= current_user.user_name %></h1>
-  <%= button_to 'logout', session_url, method: :delete %>
-<% else %>
-  <%= button_to 'login', new_session_url, method: 'get' %>
-<% end %>
-<%= yield %>
+  <% if current_user %>
+    <h1>Hey <%= current_user.user_name %></h1>
+    <%= button_to 'logout', session_url, method: :delete %>
+  <% else %>
+    <%= button_to 'login', new_session_url, method: 'get' %>
+  <% end %>
+  <%= yield %>
 
 </body>
+
+<footer>
+  This is our 99 Cats site. Please feel free to browse!
+
+  <%= yield :footer %>
+</footer>
 </html>
