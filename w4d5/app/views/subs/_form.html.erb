@@ -1,0 +1,25 @@
+<% action_url = sub.persisted? ? sub_url(sub) : subs_url %>
+
+<form class="" action="<%= action_url %>" method="post">
+
+  <% if sub.persisted? %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+
+  <%= auth_token %>
+
+  <label>
+    Title:
+    <input type="text" name="sub[title]" value=" <%= sub.title %>">
+  </label>
+
+  <br><br>
+  <label>
+    Description:
+    <br>
+    <textarea name="sub[description]" rows="20" cols="40"><%= sub.description %></textarea>
+  </label>
+
+  <br><br>
+  <input type="submit" value="Submit">
+</form>

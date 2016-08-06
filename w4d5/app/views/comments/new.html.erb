@@ -1,0 +1,3 @@
+<h2>Create Comment for Post: <%= @post.title %></h2>
+
+<%= render "form", post_id: @post.id, parent_comment_id: params[:id] %>

@@ -1,0 +1,37 @@
+<h2>Post: <%= @post.title %></h2>
+
+Back to subreddits:
+<br>
+<% @subs.each do |sub| %>
+  <%= link_to sub.title, sub_url(sub) %>
+<% end %>
+
+<% if @post.author_id == current_user.id %>
+<%= button_to "Edit", edit_post_url(@post), method: :get %>
+<%= button_to "Delete", post_url(@post), method: :delete %>
+<% end %>
+
+<p>
+  Content:
+  <%= @post.content %>
+</p>
+
+<p>
+  URL:
+  <%= @post.url %>
+</p>
+
+
+<h2>Comments</h2>
+
+Make a new commment:
+<%= render "comments/form", post_id: @post.id,
+                            parent_comment_id: nil %>
+
+<br><br>
+
+------------------
+
+
+<%= render "comments/comment", all_comments_hash: @all_comments_hash,
+                               parent_comment_id: nil %>

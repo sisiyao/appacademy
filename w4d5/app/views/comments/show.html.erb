@@ -1,0 +1,14 @@
+<h2>Comment</h2>
+
+<span>Author: <%= @comment.author.email %></span>
+<br>
+<span>Time: <%= @comment.created_at %></span>
+<p><%= @comment.content %></p>
+
+<h2>Reply</h2>
+<%= render "comments/form", post_id: @comment.post_id,
+                            parent_comment_id: @comment.id %>
+
+
+<%= render "comments/comment", all_comments_hash: @all_comments_hash,
+                               parent_comment_id: @comment.id %>

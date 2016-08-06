@@ -1,0 +1,39 @@
+<%= link_to "Back to all subreddits", subs_url %>
+
+<h2>Subreddit: <%= @sub.title %></h2>
+
+<p>
+  <%= @sub.description %>
+</p>
+
+<% if @sub.moderator_id == current_user.id %>
+  <%= button_to "Edit this subreddit!", edit_sub_url(@sub), method: :get %>
+<% end %>
+
+<h2>POSTS</h2>
+<%= button_to "create a post", new_sub_post_url(@sub.id), method: :get %>
+
+<br>
+
+<table>
+  <% @sub.posts.each do |post| %>
+    <tr>
+      <td>
+        <%= link_to post.title, post_url(post) %>
+      </td>
+      <td>
+        <%= post.author.email %>
+      </td>
+      <td>
+        <%= button_to "upvote", post_upvote_url(post.id), method: :post%>
+      </td>
+      <td>
+        <%= button_to "downvote", post_downvote_url(post.id), method: :post%>
+      </td>
+      <td>
+        <%= post.count_votes %>
+      </td>
+    </tr>
+
+  <% end %>
+</table>

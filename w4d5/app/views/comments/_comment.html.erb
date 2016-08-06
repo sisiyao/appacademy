@@ -1,0 +1,27 @@
+<ul>
+
+  <% child_comments = all_comments_hash[parent_comment_id] %>
+
+  <% child_comments.each do |comment| %>
+    <div style="border: 1px dotted black">
+
+      <li>
+        <span>Author: <%= comment.author.email %></span>
+        <br>
+
+        <span>Time: <%= comment.created_at %></span>
+
+        <p><%= comment.content %></p>
+
+        <%= button_to "show comment", comment_url(comment), method: :get %>
+      </li>
+
+    </div>
+
+    <br>
+
+    <%= render "comments/comment", all_comments_hash: all_comments_hash,
+                                   parent_comment_id: comment.id %>
+  <% end %>
+
+</ul>
