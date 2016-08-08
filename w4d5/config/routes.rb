@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :delete, :show]
 
   post 'posts/:post_id/upvote', to: "votes#upvote", as: 'post_upvote'
-  post 'posts/:post_id/downvote', to: "votes#upvote", as: 'post_downvote'
-  post 'comments/:comment_id/upvote', to: "votes#downvote", as: 'comment_upvote'
+  post 'posts/:post_id/downvote', to: "votes#downvote", as: 'post_downvote'
+  post 'comments/:comment_id/upvote', to: "votes#upvote", as: 'comment_upvote'
   post 'comments/:comment_id/downvote', to: "votes#downvote", as: 'comment_downvote'
 
 end

@@ -16,7 +16,7 @@
 <br>
 
 <table>
-  <% @sub.posts.each do |post| %>
+  <% @sub.posts.order(vote_count: :desc).each do |post| %>
     <tr>
       <td>
         <%= link_to post.title, post_url(post) %>
@@ -31,7 +31,7 @@
         <%= button_to "downvote", post_downvote_url(post.id), method: :post%>
       </td>
       <td>
-        <%= post.count_votes %>
+        Vote count: <%= post.vote_count %>
       </td>
     </tr>
 

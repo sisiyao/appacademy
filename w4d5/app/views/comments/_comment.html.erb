@@ -1,6 +1,7 @@
 <ul>
 
   <% child_comments = all_comments_hash[parent_comment_id] %>
+  <% child_comments.sort! { |a, b| b.vote_count <=> a.vote_count } %>
 
   <% child_comments.each do |comment| %>
     <div style="border: 1px dotted black">
@@ -14,6 +15,20 @@
         <p><%= comment.content %></p>
 
         <%= button_to "show comment", comment_url(comment), method: :get %>
+
+        <table>
+          <tr>
+            <td>
+              <%= button_to "upvote", comment_upvote_url(comment.id), method: :post%>
+            </td>
+            <td>
+              <%= button_to "downvote", comment_downvote_url(comment.id), method: :post%>
+            </td>
+            <td>
+              Vote count: <%= comment.vote_count %>
+            </td>
+          </tr>
+        </table>
       </li>
 
     </div>
