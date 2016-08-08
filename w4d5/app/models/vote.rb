@@ -1,3 +1,4 @@
+
 class Vote < ActiveRecord::Base
 
   validates :value, :voteable_id, :voteable_type, presence: true

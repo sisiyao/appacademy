@@ -5,6 +5,15 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token!
 
+  has_many :subs,
+    foreign_key: :moderator_id,
+    class_name: :Sub
+
+  has_many :votes, as: :voteable
+
+  has_many :comments,
+    foreign_key: :author_id
+
   attr_reader :password
 
   def reset_session_token!
