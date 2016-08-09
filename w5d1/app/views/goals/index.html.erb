@@ -1,0 +1,19 @@
+<h2>My Goals</h2>
+
+<ul>
+  <% @goals.each do |goal| %>
+    <% if goal.user_id == current_user.id %>
+      <li><%= link_to goal.content, goal_url(goal) %></li>
+    <%end%>
+  <%end%>
+</ul>
+
+<h2>Other People's Goals</h2>
+
+<ul>
+  <% @goals.each do |goal| %>
+    <% if goal.user_id != current_user.id && goal.public_status == true %>
+      <li><%= link_to goal.content, goal_url(goal) %>, <%= goal.user.username %></li>
+    <%end%>
+  <%end%>
+</ul>

@@ -1,0 +1,33 @@
+<form action="/goals" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>
+    Content:
+    <br>
+    <textarea name="goal[content]" rows="10" cols="40"><%= @goal.content %></textarea>
+  </label>
+
+  <br><br>
+
+  <label>
+      Public:
+      <select name="goal[public_status]">
+        <option value="true" <%= "selected" if @goal.public_status == true %>>True</option>
+        <option value="false" <%= "selected" if @goal.public_status == false %>>False</option>
+      </select>
+  </label>
+
+  <br><br>
+
+  <label>
+    Completed:
+    <select name="goal[completed]">
+      <option value="true" <%= "selected" if @goal.completed == true %>>True</option>
+      <option value="false" <%= "selected" if @goal.completed == false %>>False</option>
+    </select>
+  </label>
+
+  <br><br>
+
+  <input type="submit" value="Submit Goal">
+</form>
