@@ -13,7 +13,7 @@ class ShowExceptions
     # this is the version that passes the specs
     # ['500', {'Content-type' => 'text/html'}, [render_exception(e)]]
 
-    req = Rack::Request.new(env)
+    # req = Rack::Request.new(env)
     res = Rack::Response.new
     res['Content-Type'] = 'text/html'
     res.status = 500
