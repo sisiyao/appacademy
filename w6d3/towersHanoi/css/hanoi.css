@@ -1,0 +1,56 @@
+h1 {
+  margin: auto;
+  text-align: center;
+}
+
+.hanoi {
+  width: 600px;
+  margin: auto;
+}
+
+.tower {
+  list-style-type: none;
+  width: 30%;
+  height: 300px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0 10px 0 10px;
+  border-bottom: 10px solid black;
+  float: left;
+  display: block;
+  /* justify-content: flex-end; */
+  display: flex;
+  flex-direction: column;
+  /* align-content:  flex-end; */
+  align-items: center;
+  /* vertical-align: bottom; */
+  justify-content: flex-end;
+}
+
+.tower:hover {
+  border-bottom-color: green;
+}
+
+.tower:hover > li:first-child {
+  background-color: green;
+}
+
+.disc {
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 2px;
+  background-color: grey;
+  border: 2px solid black;
+}
+
+.disc1 {
+  width: 40px;
+}
+
+.disc2{
+  width: 80px;
+}
+
+.disc3 {
+  width: 140px;
+}

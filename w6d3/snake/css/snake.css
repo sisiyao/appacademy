@@ -1,0 +1,38 @@
+h1 {
+  margin: auto;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 48px;
+}
+
+.grid {
+  list-style-type: none;
+  width: 600px;
+  height: 600px;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  margin: auto;
+  border: 5px solid black;
+}
+
+.cell {
+  float: left;
+  display: block;
+  height: 40px;
+  width: 40px;
+  box-sizing: border-box;
+  outline: 1px solid black;
+}
+
+.cf {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.body {
+  background-color: red;
+}
