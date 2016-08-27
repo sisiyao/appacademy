@@ -6,9 +6,9 @@ class BenchIndex extends React.Component{
     super(props);
   }
 
-  componentDidMount () {
-    this.props.requestBenches();
-  }
+  // componentDidMount () {
+  //   this.props.requestBenches();
+  // }
 
   render () {
     const benchesList = this.props.benches.map(bench => (
