@@ -1,7 +1,7 @@
 class MarkerManager {
   constructor (map){
     this.map = map;
-    this.markers = [];
+    this.markerPositions = [];
   }
 
   updateMarkers (benches){
@@ -10,10 +10,11 @@ class MarkerManager {
     let newBenches = this._benchesToAdd(benches);
 
     newBenches.forEach(bench => {
-      let benchMarker = this._createMarkerFromBench(bench);
-      this.markers.push(benchMarker);
-      //left off here
+      this._createMarkerFromBench(bench);
     });
+
+    // uncomment debugger here to check the current array of marker positions for dups
+    // debugger
   }
 
   _benchesToAdd (benches) {
@@ -22,9 +23,9 @@ class MarkerManager {
     benches.forEach(bench => {
       let benchInMarkerArray = false;
 
-      this.markers.forEach(marker => {
-        if (marker.position.lat() === bench.lat
-        && marker.position.lng === bench.lng) {
+      this.markerPositions.forEach(pos => {
+        if (pos.lat() === bench.lat
+        && pos.lng() === bench.lng) {
           benchInMarkerArray = true;
         }
       });
@@ -39,7 +40,8 @@ class MarkerManager {
 
   _createMarkerFromBench (bench) {
     let pos = new google.maps.LatLng(bench.lat, bench.lng);
-    return new google.maps.Marker({position: pos, map: this.map});
+    this.markerPositions.push(pos);
+    new google.maps.Marker({position: pos, map: this.map});
   }
 }
 
