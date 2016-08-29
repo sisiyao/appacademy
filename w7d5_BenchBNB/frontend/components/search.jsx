@@ -5,7 +5,6 @@ import React from 'react';
 const Search = ({benches, requestBenches, updateBounds}) => {
   return (
     <div>
-      <h1>BenchBNB</h1>
       <BenchMap benches={benches} updateBounds={updateBounds}/>
       <BenchIndex benches={benches} requestBenches={requestBenches}/>
     </div>

@@ -8,5 +8,15 @@ export const fetchBenches = (filters, success) => {
   });
 };
 
+export const createBench = (newBench, success) => {
+  $.ajax({
+    method: "POST",
+    url: "/api/benches",
+    data: { bench: newBench },
+    success,
+    error: (e) => console.log(e)
+  });
+};
+
 // testing purposes
 window.fetchBenches = fetchBenches;

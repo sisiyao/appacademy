@@ -1,5 +1,6 @@
 import React from 'react';
 import MarkerManager from '../util/marker_manager';
+import { withRouter } from 'react-router';
 
 class BenchMap extends React.Component {
   constructor (props) {
@@ -7,27 +8,25 @@ class BenchMap extends React.Component {
   }
 
   componentDidMount () {
-    // find the `<map>` node on the DOM
     const mapDOMNode = this.refs.map;
 
-    // set the map to show SF
     const mapOptions = {
       center: {lat: 37.7758, lng: -122.435}, // this is SF
       zoom: 13
     };
 
-    // wrap the mapDOMNode in a Google Map
     this.map = new google.maps.Map(mapDOMNode, mapOptions);
+
     this.MarkerManager = new MarkerManager(this.map);
-    // console.log("update markers after mounting");
     this.MarkerManager.updateMarkers(this.props.benches);
+
+    google.maps.event.addListener(this.map, "click",
+      this._inputClickedCoordsInForm.bind(this));
+
     this.listenForMove();
   }
 
   componentWillReceiveProps (nextProps) {
-    // console.log("receiving props");
-    // console.log(nextProps.benches);
-    // console.log("update markers after receiving props");
     this.MarkerManager.updateMarkers(nextProps.benches);
   }
 
@@ -48,6 +47,23 @@ class BenchMap extends React.Component {
     });
   }
 
+  _inputClickedCoordsInForm (e) {
+    const latClicked = e.latLng.lat();
+    const longClicked = e.latLng.lng();
+    const coords = {
+      lat: latClicked,
+      lng: longClicked
+    };
+    this._handleClick(coords);
+  }
+
+  _handleClick (coords) {
+    this.props.router.push({
+      pathname: "benches/new",
+      query: coords
+    });
+  }
+
   render () {
     return (
       <div id='map-container' ref='map'>
@@ -56,4 +72,4 @@ class BenchMap extends React.Component {
   }
 }
 
-export default BenchMap;
+export default withRouter(BenchMap);
