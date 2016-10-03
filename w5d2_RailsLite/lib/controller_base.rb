@@ -7,7 +7,7 @@ require_relative './flash'
 require 'byebug'
 
 class ControllerBase
-  attr_reader :req, :res, :params, :protect
+  attr_reader :req, :res, :params
 
   # Setup the controller
   def initialize(req, res, route_params = {})
@@ -68,13 +68,13 @@ class ControllerBase
 
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
-    p name != :get
-    p @@protect
-    if name != :get && @@protect == true
-      p "here"
-      p check_authenticity_token
-      raise Exception unless check_authenticity_token
-    end
+    # p name != :get
+    # p @@protect
+    # if name != :get && @@protect == true
+    #   p "here"
+    #   p check_authenticity_token
+    #   raise Exception unless check_authenticity_token
+    # end
 
     self.send(name.to_sym)
     unless already_built_response?
@@ -83,15 +83,15 @@ class ControllerBase
   end
 
   def form_authenticity_token
-    @token ||= SecureRandom.urlsafe_base64(32)
-    session['authenticity_token'] ||= @token
+    # @token ||= SecureRandom.urlsafe_base64(32)
+    # session['authenticity_token'] ||= @token
   end
-
-  def check_authenticity_token
-    params[:authenticity_token] == session['authenticity_token']
-  end
-
-  def self.protect_from_forgery
-    @@protect = true
-  end
+  #
+  # def check_authenticity_token
+  #   params[:authenticity_token] == session['authenticity_token']
+  # end
+  #
+  # def self.protect_from_forgery
+  #   @@protect = true
+  # end
 end
